@@ -32,7 +32,7 @@ def _parse_yum_or_zypper_repositories(output):
             current_repo["name"] = line[1:-1]
 
         if current_repo and "=" in line:
-            key, value = line.split("=", 1)
+            key, value = re.split(r"\s*=\s*", line, maxsplit=1)
             current_repo[key] = value
 
     if current_repo:
